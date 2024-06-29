@@ -15,7 +15,7 @@ publicWidget.registry.ProductPriceCalculation = publicWidget.Widget.extend({
         var ProductQty = $('input[name="add_qty"]').val()
 
         if(RentalStartDate != 'Invalid Date' && RentalEndDate != 'Invalid Date'){
-            var differenceMs = RentalEndDate.getTime() - RentalStartDate.getTime();
+            var differenceMs = RentalEndDate.getTime() - RentalStartDate.getTime() + 1;
             var differenceDays = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
             var amount = differenceDays * parseFloat($('.oe_price .oe_currency_value').text()) * ProductQty
             $('.oe_price .oe_currency_value').text(parseFloat(amount).toFixed(2))
