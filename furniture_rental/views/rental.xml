@@ -1,5 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
+    <!-- rental product domain in orderline -->
+    <record id="view_order_form_inherit_for_rental" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_template_id']" position="attributes">
+                <attribute name="domain">[('is_rental', '=', True)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_template_id']" position="after">
+                <field name="rental_start_date" required="True"/>
+                <field name="rental_end_date" required="True"/>
+            </xpath>
+        </field>
+    </record>
+
     <!-- This Menu Item must have a parent and an action -->
     <record id="action_rental_orders" model="ir.actions.act_window">
         <field name="name">Rental</field>
@@ -7,6 +23,7 @@
         <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
         <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
         <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="context">{'default_is_rental_order': True}</field>
         <field name="domain">[('is_rental_order', '=', True)]</field>
     </record>
 

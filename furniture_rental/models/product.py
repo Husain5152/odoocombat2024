@@ -7,4 +7,4 @@ class ProductTemplate(models.Model):
         string="Can be Rented",
         help="Allow renting of this product.")
     
-    ranting_rate = fields.Monetary(string="Rate(Daily)", currency_field='currency_id')
+    ranting_rate = fields.Monetary(string="Rate(Daily)", currency_field='currency_id',default=1)

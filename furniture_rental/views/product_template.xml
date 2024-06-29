@@ -21,4 +21,24 @@
             </xpath>
         </field>
     </record>
+
+    <!-- Product Action-->
+    <record id="rental_product_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="domain">[('is_rental', '=', True)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No product found. Let's create one!
+          </p><p>
+            You must define a product for everything you sell or purchase,
+            whether it's a storable product, a consumable or a service.
+          </p>
+        </field>
+    </record>
+
+    <!-- Product menu-->
+    <menuitem id="rental_products_menu" name="Products" parent="rental_base_menu" action="rental_product_action" sequence="2"/>
 </odoo>
