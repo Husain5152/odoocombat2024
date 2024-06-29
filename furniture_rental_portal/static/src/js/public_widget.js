@@ -6,10 +6,9 @@ import { _t } from "@web/core/l10n/translation";
 publicWidget.registry.UpdateRentalOrder = publicWidget.Widget.extend({
     events: {
         'click #pickup_button_id': '_onClickPickupButton',
-        // 'click #return_button_id' : '_onClickReturnButton'
     },
     _onClickPickupButton: async function (event) {
-        alert("called")
+        console.log("called")
     }
 });
 

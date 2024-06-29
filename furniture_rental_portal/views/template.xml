@@ -57,7 +57,12 @@
                             </span>
                         </td>
                         <td class="text-center"><span t-field="order.amount_total"/></td>
-                        <td class="text-center"><span t-esc="order.rental_status.capitalize()"/></td>
+                        <t t-if="order.rental_status">
+                            <td class="text-center"><span t-esc="order.rental_status.capitalize()"/></td>
+                        </t>
+                        <t t-else="">
+                            <td class="text-center"><span t-esc="order.rental_status"/></td>
+                        </t>
                         <t t-if="order.rental_status == 'orderd'">
                             <td>
                                 <a role="button" t-att-href="'/update/rental_order_pickup_state?order_id=%s' % (order.id) " class="btn btn-link p-0"><i class="fa fa-truck"></i>Pickup</a>

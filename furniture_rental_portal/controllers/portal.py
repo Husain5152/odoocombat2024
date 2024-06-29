@@ -4,6 +4,7 @@ from odoo.http import request
 
 from odoo.addons.payment import utils as payment_utils
 from odoo.addons.payment.controllers import portal as payment_portal
+from odoo.addons.website_sale.controllers import main as WesbiteSale
 from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 class CustomerPortal(payment_portal.PaymentPortal):
@@ -83,5 +84,32 @@ class CustomerPortal(payment_portal.PaymentPortal):
         if kwargs.get('order_id'):
             order_id = request.env["sale.order"].sudo().browse(int(kwargs.get('order_id')))
             order_id.rental_status = 'return'
+            # Creating return picking
+            for picking in order_id.picking_ids.filtered(lambda picking : picking.picking_type_id.code == 'outgoing'):
+                return_picking = picking.sudo().copy()
+                return_picking.sudo().location_id = picking.location_dest_id
+                return_picking.sudo().location_dest_id = picking.location_id
+                return_picking.sudo().picking_type_id = self.env.ref("stock.picking_type_in").sudo().id
+
         return request.redirect('/my/rental_orders')
         
+
+class WesbiteSaleNew(WesbiteSale.WebsiteSale):
+    @http.route(['/shop/confirmation'], type='http', auth="public", website=True, sitemap=False)
+    def shop_payment_confirmation(self, **post):
+        """ End of checkout process controller. Confirmation is basically seing
+        the status of a sale.order. State at this point :
+
+         - should not have any context / session info: clean them
+         - take a sale.order id, because we request a sale.order and are not
+           session dependant anymore
+        """
+        sale_order_id = request.session.get('sale_last_order_id')
+        if sale_order_id:
+            order = request.env['sale.order'].sudo().browse(sale_order_id)
+            if order.is_rental_order:
+                order.rental_status = 'orderd'
+            values = self._prepare_shop_payment_confirmation_values(order)
+            return request.render("website_sale.confirmation", values)
+        else:
+            return request.redirect('/shop')
