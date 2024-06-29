@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- model.name inherit form view -->
+    <record id="product_template_from_view_extended" model="ir.ui.view">
+        <field name="name">product.template.inherit.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position='inside'>
+                <span class="d-inline-block">
+                    <field name="is_rental"/>
+                    <label for="is_rental"/>
+                </span>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="rental_rate" string="Rental Rate" invisible="not is_rental">
+                    <group>
+                        <field name="ranting_rate"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
