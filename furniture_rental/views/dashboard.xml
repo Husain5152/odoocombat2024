@@ -6,67 +6,73 @@
         <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban create="false">
-                <field name="total_orders" />
-                <field name="total_pickup_orders" />
-                <field name="total_return_orders" />
+                <field name="total_orders"/>
+                <field name="total_pickup_orders"/>
+                <field name="total_return_orders"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div id="rental_dashboard" class="o_kanban_view o_kanban_record">
-                            <div class="row">
-                                <div style="border: 0px;">
-                                    <div class="row px-3 py-4">
-                                        <div class="col-10">
-                                            <div class="mb-0 ml-4 card-title-text" style="font-size: 25px;text-align: center;">Total Orders</div>
-                                            <div class="mt-2 ml-4 count-card-txt" style="font-size: 25px;text-align: center;">
-                                                <field name="total_orders" />
-                                            </div>
+                        <style>
+                            .o_kanban_record{
+                            width: 100% !important;
+                            }
+                        </style>
+                        <div class="container">
+                            <div id="rental_dashboard" class="row p-2">
+                                <div class="card col-md-4 m-2" style="width: 30% !important;">
+                                    <div class="px-3 py-4 m-auto">
+                                        <h2 class="text-info text-center">Total Orders</h2>
+                                        <h2 class="text-center">
+                                            <field name="total_orders"/>
+                                        </h2>
+                                        <div class="m-auto text-center">
+                                            <a type="object" name="open_total_orders"
+                                               class="btn btn-primary text-center">
+                                                View Details
+                                                <div class="ml-auto">
+                                                    <i class="mdi mdi-arrow-right bg-blue-right"></i>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
-                                    <a type="object" name="open_total_orders" class="btn btn-primary" style="margin-left:25%;">
-                                        View Details
-                                        <div class="ml-auto">
-                                            <i class="mdi mdi-arrow-right bg-blue-right"></i>
-                                        </div>
-                                    </a>
                                 </div>
-                                <div style="border: 0px;">
-                                    <div class="row px-3 py-4">
-                                        <div class="col-10">
-                                            <div class="mb-0 ml-4 card-title-text" style="font-size: 25px;text-align: center;">Total Picked Orders</div>
-                                            <div class="mt-2 ml-4 count-card-txt" style="font-size: 25px;text-align: center;">
-                                                <field name="total_pickup_orders" />
-                                            </div>
+                                <div class="card col-md-4 m-2" style="width: 30% !important;">
+                                    <div class="px-3 py-4 m-auto">
+                                        <h2 class="text-info text-center">Total Picked Orders</h2>
+                                        <h2 class="text-center">
+                                            <field name="total_pickup_orders"/>
+                                        </h2>
+                                        <div class="m-auto text-center">
+                                            <a type="object" name="open_total_picked_orders"
+                                               class="btn btn-primary text-center">
+                                                View Details
+                                                <div class="ml-auto">
+                                                    <i class="mdi mdi-arrow-right bg-blue-right"></i>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
-                                    <a type="object" name="open_total_picked_orders" class="btn btn-primary" style="margin-left:25%;">
-                                        View Details
-                                        <div class="ml-auto">
-                                            <i class="mdi mdi-arrow-right bg-blue-right"></i>
-                                        </div>
-                                    </a>
                                 </div>
-                                <div style="border: 0px;">
-                                    <div class="row px-3 py-4">
-                                        <div class="col-10">
-                                            <div class="mb-0 ml-4 card-title-text" style="font-size: 25px;text-align: center;">Total Return Orders</div>
-                                            <div class="mt-2 ml-4 count-card-txt" style="font-size: 25px;text-align: center;">
-                                                <field name="total_return_orders" />
-                                            </div>
+                                <div class="card col-md-4 m-2" style="width: 30% !important;">
+                                    <div class="px-3 py-4 m-auto">
+                                        <h2 class="text-info text-center">Total Return Orders</h2>
+                                        <h2 class="text-center">
+                                            <field name="total_return_orders"/>
+                                        </h2>
+                                        <div class="m-auto text-center">
+                                            <a type="object" name="open_total_return_orders"
+                                               class="btn btn-primary text-center">
+                                                View Details
+                                                <div class="ml-auto">
+                                                    <i class="mdi mdi-arrow-right bg-blue-right"></i>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
-                                    <a type="object" name="open_total_return_orders" class="btn btn-primary" style="margin-left:25%;">
-                                        View Details
-                                        <div class="ml-auto">
-                                            <i class="mdi mdi-arrow-right bg-blue-right"></i>
-                                        </div>
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </t>
                 </templates>
-
-
             </kanban>
         </field>
     </record>
@@ -75,11 +81,12 @@
         <field name="name">My Dashboard</field>
         <field name="res_model">res.users</field>
         <field name="view_mode">kanban</field>
-        <field name="view_id" ref="rental_user_dashboard_kanban_view" />
+        <field name="view_id" ref="rental_user_dashboard_kanban_view"/>
         <field name="usage">menu</field>
         <field name="domain">[('id','=',uid)]</field>
     </record>
 
     <menuitem id="rental_main_dashboard" name="Rental Dashboard" sequence="0" web_icon=""/>
-    <menuitem id="rental_dashboard_menu" name="Dashboard" parent="rental_main_dashboard" action="action_rental_dashboard" sequence="1" />
+    <menuitem id="rental_dashboard_menu" name="Dashboard" parent="rental_main_dashboard"
+              action="action_rental_dashboard" sequence="1"/>
 </odoo>
