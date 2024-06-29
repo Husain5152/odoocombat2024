@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- This Menu Item must have a parent and an action -->
+    <record id="action_rental_orders" model="ir.actions.act_window">
+        <field name="name">Rental</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="domain">[('is_rental_order', '=', True)]</field>
+    </record>
+
+    <menuitem id="rental_base_menu" name="Rental"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="rental_order_menu" name="Rental" parent="rental_base_menu" action="action_rental_orders" sequence="1"/>
+    
+</odoo>

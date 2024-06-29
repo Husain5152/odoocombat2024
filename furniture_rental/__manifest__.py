@@ -6,7 +6,8 @@
     'author': 'Husain/Vrajesh/Massom',
     'depends': ['base', 'product' ,'website', 'sale', 'payment'],
     'data': [
-        'views/product_template.xml'
+        'views/product_template.xml',
+        'views/rental.xml'
     ],
     'application': True,
 }
