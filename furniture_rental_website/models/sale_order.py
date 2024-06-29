@@ -24,5 +24,8 @@ class SaleOrderLine(models.Model):
     def _compute_price_unit(self):
         super(SaleOrderLine, self)._compute_price_unit()
         for line in self:
+            print(line.order_id.is_rental_order, line.product_uom_qty,"testing ===============")
+            print(line.rental_end_date, ((line.rental_end_date - line.rental_start_date).days + 1),"end date ==============")
+            print(line.rental_start_date, line.product_id.list_price,"start date ==============")
             if line.order_id.is_rental_order and line.rental_end_date and line.rental_start_date:
-                line.price_unit = line.product_uom_qty * line.product_id.list_price * ((line.rental_end_date - line.rental_start_date).days)
+                line.price_unit = (line.product_uom_qty or 1) * line.product_id.list_price * ((line.rental_end_date - line.rental_start_date).days + 1)
