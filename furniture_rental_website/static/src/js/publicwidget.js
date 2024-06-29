@@ -18,7 +18,7 @@ publicWidget.registry.ProductPriceCalculation = publicWidget.Widget.extend({
             var differenceMs = RentalEndDate.getTime() - RentalStartDate.getTime();
             var differenceDays = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
             var amount = differenceDays * parseFloat($('.oe_price .oe_currency_value').text()) * ProductQty
-            $('.oe_price .oe_currency_value').text(amount)
+            $('.oe_price .oe_currency_value').text(parseFloat(amount).toFixed(2))
         }
     }
 });
