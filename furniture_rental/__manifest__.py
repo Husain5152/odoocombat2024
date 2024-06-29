@@ -4,7 +4,7 @@
     'summary': 'A module to manage furniture rental services.',
     'category': 'Rental',
     'author': 'Husain/Vrajesh/Massom',
-    'depends': ['base', 'product' ,'website', 'sale', 'payment', 'stock', 'web'],
+    'depends': ['base', 'product' ,'website', 'sale_management', 'payment', 'stock', 'web'],
     'data': [
         'views/rental.xml',
         'views/product_template.xml',
