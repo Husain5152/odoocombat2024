@@ -27,7 +27,7 @@
         <field name="domain">[('is_rental_order', '=', True)]</field>
     </record>
 
-    <menuitem id="rental_base_menu" name="Rental"/>
+    <menuitem id="rental_base_menu" name="Rental" sequence="-10" web_icon="furniture_rental,static/src/icons/rent.png"/>
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="rental_order_menu" name="Rental" parent="rental_base_menu" action="action_rental_orders" sequence="1"/>
     

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <record id="rental_user_dashboard_kanban_view" model="ir.ui.view">
-        <field name="name">User_Dashboard</field>
+        <field name="name">Rental Dashboard</field>
         <field name="model">res.users</field>
         <field name="type">kanban</field>
         <field name="arch" type="xml">
@@ -78,7 +78,7 @@
     </record>
 
     <record id="action_rental_dashboard" model="ir.actions.act_window">
-        <field name="name">My Dashboard</field>
+        <field name="name">Rental Dashboard</field>
         <field name="res_model">res.users</field>
         <field name="view_mode">kanban</field>
         <field name="view_id" ref="rental_user_dashboard_kanban_view"/>
@@ -86,7 +86,5 @@
         <field name="domain">[('id','=',uid)]</field>
     </record>
 
-    <menuitem id="rental_main_dashboard" name="Rental Dashboard" sequence="0" web_icon=""/>
-    <menuitem id="rental_dashboard_menu" name="Dashboard" parent="rental_main_dashboard"
-              action="action_rental_dashboard" sequence="1"/>
+    <menuitem id="rental_dashboard_menu" name="Rental Dashboard" parent="rental_base_menu" action="action_rental_dashboard" sequence="0" />
 </odoo>
