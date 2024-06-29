@@ -7,3 +7,10 @@ class saleOrder(models.Model):
     rental_start_date = fields.Date(string='Rental Start Date')
     rental_end_date = fields.Date(string="Renal End date")
     rental_status = fields.Selection([('orderd', 'Orderd'), ('pickup', 'Pickup'), ('return', 'Retrun')])
+
+
+class saleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    rental_start_date = fields.Date(string='Rental Start Date')
+    rental_end_date = fields.Date(string="Renal End date")
