@@ -87,9 +87,15 @@ class CustomerPortal(payment_portal.PaymentPortal):
             # Creating return picking
             for picking in order_id.picking_ids.filtered(lambda picking : picking.picking_type_id.code == 'outgoing'):
                 return_picking = picking.sudo().copy()
-                return_picking.sudo().location_id = picking.location_dest_id
-                return_picking.sudo().location_dest_id = picking.location_id
-                return_picking.sudo().picking_type_id = self.env.ref("stock.picking_type_in").sudo().id
+                return_picking.sudo().location_id = picking.location_dest_id.id
+                return_picking.sudo().location_dest_id = picking.location_id.id
+                return_picking.sudo().picking_type_id = request.env.ref("stock.picking_type_in").sudo().id
+
+                for line in return_picking.sudo().move_ids_without_package:
+                    location_id = line.location_dest_id.id
+                    location_dest_id = line.location_id.id
+                    line.location_id = location_id
+                    line.location_dest_id = location_dest_id
 
         return request.redirect('/my/rental_orders')
         

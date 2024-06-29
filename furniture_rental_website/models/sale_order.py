@@ -16,3 +16,13 @@ class SaleOrder(models.Model):
     #     order_line['rental_start_date'] = kwargs.get('rental_start_date')
     #     order_line['rental_end_date'] = kwargs.get('rental_end_date')
     #     return res
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    @api.depends('product_id', 'product_uom', 'product_uom_qty')
+    def _compute_price_unit(self):
+        super(SaleOrderLine, self)._compute_price_unit()
+        for line in self:
+            if line.order_id.is_rental_order and line.rental_end_date and line.rental_start_date:
+                line.price_unit = line.product_uom_qty * line.product_id.list_price * ((line.rental_end_date - line.rental_start_date).days)
