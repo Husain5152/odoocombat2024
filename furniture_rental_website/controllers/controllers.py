@@ -19,6 +19,9 @@ class FurnitureRentalWebsiteSale(WebsiteSale):
     ):
         """This route is called when adding a product to cart (no options)."""
         sale_order = request.website.sale_get_order(force_create=True)
+        sale_order.sudo().write({
+            'is_rental_order': True
+        })
         if sale_order.state != 'draft':
             request.session['sale_order_id'] = None
             sale_order = request.website.sale_get_order(force_create=True)

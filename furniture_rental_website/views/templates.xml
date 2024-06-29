@@ -294,25 +294,19 @@
 
         <template id="website_sale_product_new" inherit_id="website_sale.product" name="Product">
             <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="before">
-                <div class="custom-date-field form-group mb-3 d-flex align-items-center"
-                        data-type="text"
-                        data-name="Field">
-                    <label for="custom_date" class="form-label"
-                            style="font-size:18px;flex: 0 0 120px;">Select Date:
+                <div class="custom-date-field form-group mb-3 d-flex align-items-center" data-type="text" data-name="Field">
+                    <label for="custom_date" class="form-label" style="font-size:18px;flex: 0 0 120px;">Select Date:
                     </label>
                     <input type="date" class="form-control" id="rental_start_date" name="rental_start_date" style="width:150px"/>
                     <input type="date" class="form-control" id="rental_end_date" name="rental_end_date" style="width:150px"/>
-                    <button class="btn btn-primary" id="fill_form_details" data-icon-class="fa fa-wpforms" style="margin-left:5px" title="Fill Details"><i class="fa fa-wpforms" aria-hidden="true"></i></button>
                 </div>
-<!--                <input type="hidden" id="car_model_main" class="form-control" name="car_model"/>
-                <input type="hidden" id="manufacture_year_main" class="form-control" name="manufacture_year"/>
-                <input type="hidden" id="license_plate_main" class="form-control" name="license_plate"/>
-                <input type="hidden" id="wheel_lock_yes_main" name="wheel_lock" class="me-2" value="yes"/>
-                <input type="hidden" class="me-2" id="wheel_lock_no_main" name="wheel_lock" value="no"/>
-                <input type="hidden" class="form-control" id="odometer_main" name="odometer"/>
-                <input type="hidden" class="form-control" id="parts_main" name="parts"/>-->
+            </xpath>
+            <xpath expr="//a[@id='add_to_cart']" position="replace">
+                <button class="btn btn-primary" id="fill_form_details" data-icon-class="fa fa-wpforms" style="margin-left:5px" title="Fill Details">
+                    <i class="fa fa-wpforms" aria-hidden="true"></i>
+                    <span>Rent Product</span>
+                </button>
             </xpath>
         </template>
-
     </data>
 </odoo>
