@@ -18,7 +18,7 @@
 
     <!-- This Menu Item must have a parent and an action -->
     <record id="action_rental_orders" model="ir.actions.act_window">
-        <field name="name">Rental</field>
+        <field name="name">Rental Orders</field>
         <field name="res_model">sale.order</field>
         <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
         <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>

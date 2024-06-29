@@ -86,5 +86,5 @@
         <field name="domain">[('id','=',uid)]</field>
     </record>
 
-    <menuitem id="rental_dashboard_menu" name="Rental Dashboard" parent="rental_base_menu" action="action_rental_dashboard" sequence="0" />
+    <menuitem id="rental_dashboard_menu" name="Dashboard" parent="rental_base_menu" action="action_rental_dashboard" sequence="0" />
 </odoo>
