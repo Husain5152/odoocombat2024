@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- sale.order inherit form view -->
+    <record id="sale_order_form_view_extended" model="ir.ui.view">
+        <field name="name">sale.order.inherit.view.form.new</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="after">
+                <field name="rental_status" invisible="1"/>
+                <div class="badge rounded-pill text-bg-success float-end fs-6 border-0"
+                    invisible="state != 'sale' or rental_status != 'orderd'">Booked</div>
+                <div class="badge rounded-pill text-bg-warning float-end fs-6 border-0"
+                    invisible="state != 'sale' or rental_status != 'pickup'">Picked-up</div>
+                <div class="badge rounded-pill text-bg-success float-end fs-6 border-0"
+                    invisible="state != 'sale' or rental_status != 'return'">Returned</div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
